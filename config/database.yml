@@ -44,11 +44,12 @@ test:
 #
 # You can use this database configuration with:
 #
-#   production:
-#     url: <%= ENV['DATABASE_URL'] %>
+  production:
+    url: mysql2://bf3344c38ededc:6a459e2c@us-cdbr-iron-east-03.cleardb.net/heroku_75bdf4c11aba368?reconnect=true
 #
-production:
-  <<: *default
-  database: mymart_production
-  username: mymart
-  password: <%= ENV['MYMART_DATABASE_PASSWORD'] %>
+
+# production:
+#   <<: *default
+#   database: mymart_production
+#   username: mymart
+#   password: <%= ENV['MYMART_DATABASE_PASSWORD'] %>
