@@ -6,7 +6,7 @@
            <div class="thumbnail product-details">
           		<a href="<%= product_path(product) %>"><img class="img-thumbnail" src="<%= product.picture.url(:small) %>" alt="Generic placeholder image" width="140" height="140"></a><br/>
           		<h5><%= product.title %> | <%= number_to_currency(product.price) %></h5>
-          		<%= link_to "Add to Cart", orders_path(product_id: product.id), remote: true, method: :post %>
+          		<%= link_to "Add to Cart", orders_path(product_id: product.id), remote: true, method: :post, class: "btn btn-sm btn-default" %>
           	</div>
         </div><!-- /.col-lg-4 -->
     <% end %>
