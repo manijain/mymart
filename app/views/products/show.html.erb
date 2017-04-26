@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-sm-3">
+      <p>
+        <%= image_tag @product.picture.url(:small) %>
+      </p>
+    </div>
+    
+    <div class="col-sm-9">
+      <p>
+        <strong>Title:</strong>
+        <%= @product.title %>
+      </p>
+
+      <p>
+        <strong>Description:</strong>
+        <%= @product.description %>
+      </p>
+
+      <p>
+        <strong>Price:</strong>
+        <%= @product.price %>
+      </p>
+
+      <p>
+        <strong>Quantity:</strong>
+        <%= @product.quantity %>
+      </p>
+
+      <p><a class="btn btn-sm btn-success" href="#" role="button">Add to cart</a></p>
+    </div>
+  </div>
+</div>
+
+<%= link_to 'Edit', edit_product_path(@product) %> |
+<%= link_to 'Back', products_path %>

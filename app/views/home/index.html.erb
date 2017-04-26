@@ -1,2 +1,16 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<!-- Main component for a primary marketing message or call to action -->
+<%= render :partial => "layouts/carousel" %>
+<div class="row">
+	<% @products.each do |product| %>
+         <div class="col-xs-3">
+           <div class="thumbnail product-details">
+          		<a href="<%= product_path(product) %>"><img class="img-thumbnail" src="<%= product.picture.url(:small) %>" alt="Generic placeholder image" width="140" height="140"></a><br/>
+          		<h5><%= product.title %> | Rs. <%= product.price %></h5>
+          		<p><a class="btn btn-sm btn-default" href="#" role="button">Add to cart</a></p>
+          	</div>
+        </div><!-- /.col-lg-4 -->
+    <% end %>
+</div>
+<div class="apple_pagination">
+	<%= will_paginate @products %>
+</div>
