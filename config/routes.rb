@@ -4,12 +4,13 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   # get 'home/index'
 
-  devise_for :customers
+  devise_for :customers, :controllers => { registrations: 'registrations' }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'home#index'
+  resources :orders, only: [:create, :destroy]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

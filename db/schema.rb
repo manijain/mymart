@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170426062204) do
+ActiveRecord::Schema.define(version: 20170426122624) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -53,6 +53,20 @@ ActiveRecord::Schema.define(version: 20170426062204) do
     t.datetime "updated_at",                null: false
   end
 
+  create_table "customer_addresses", force: :cascade do |t|
+    t.string   "address1",        limit: 255
+    t.string   "address2",        limit: 255
+    t.string   "city",            limit: 255
+    t.string   "district",        limit: 255
+    t.string   "state",           limit: 255
+    t.string   "country",         limit: 255
+    t.integer  "pincode",         limit: 4
+    t.integer  "contact_details", limit: 4
+    t.integer  "order_id",        limit: 4
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+  end
+
   create_table "customers", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
     t.string   "encrypted_password",     limit: 255, default: "", null: false
@@ -66,10 +80,28 @@ ActiveRecord::Schema.define(version: 20170426062204) do
     t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
+    t.string   "first_name",             limit: 255
+    t.string   "last_name",              limit: 255
   end
 
   add_index "customers", ["email"], name: "index_customers_on_email", unique: true, using: :btree
   add_index "customers", ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true, using: :btree
+
+  create_table "order_items", force: :cascade do |t|
+    t.integer  "item_quantity", limit: 4
+    t.integer  "order_id",      limit: 4
+    t.integer  "product_id",    limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string   "status",      limit: 255
+    t.float    "total_price", limit: 24
+    t.integer  "customer_id", limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
 
   create_table "products", force: :cascade do |t|
     t.string   "title",                limit: 255

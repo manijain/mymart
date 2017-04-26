@@ -9,7 +9,19 @@
 <body>
 	<%= render :partial => "layouts/header" %>
 	<div class="container marketing">
-		<%= yield %>
+	  <% if flash[:alert] %>
+	    <div class="alert alert-danger alert-dismissable">
+	    	<a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+    		<strong>Warning!</strong> <%= flash[:alert] %>
+	    </div>
+	  <% end %>
+	  <% if flash[:notice] %>
+	    <div class="alert alert-success alert-dismissable">
+	    	<a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+    		<strong>Success!</strong> <%= flash[:notice] %>
+	    </div>
+	  <% end %>
+	  <%= yield %>
 	</div>
 	<%#= render :partial => "footer" %>
 </body>

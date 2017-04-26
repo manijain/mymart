@@ -1,4 +1,7 @@
 class ProductsController < InheritedResources::Base
+  def index
+    @products = Product.all.paginate(:page => params[:page])
+  end
 
   private
 
