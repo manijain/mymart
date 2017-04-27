@@ -1,42 +1,103 @@
 class OrdersController < ApplicationController
+  def index
+    @orders = Order.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @orders }
+    end
+  end
+
+  # GET /orders/1
+  # GET /orders/1.json
+  def show
+    @order = Order.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @order }
+    end
+  end
+
+  # GET /orders/new
+  # GET /orders/new.json
+  def new
+    @cart = current_cart
+    if @cart.order_items.empty?
+      redirect_to root_url, notice: "Your cart is empty"
+      return
+    end
+
+    @order = Order.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @order }
+    end
+  end
+
+  # GET /orders/1/edit
+  def edit
+    @order = Order.find(params[:id])
+  end
+
+  # POST /orders
+  # POST /orders.json
   def create
+    @order = Order.new(order_params)
+    if current_customer.present?
+      @order.customer_id = current_customer.id
+    end
 
-    if params[:product_id].present?
-      product = Product.find(params[:product_id])
-      
-      order = Order.where(customer_id: current_customer.id, status: "initiate").first
+    @order.add_order_items_from_cart(current_cart)
 
-      if !order.present?
-        order = Order.create(status: "initiate", customer_id: current_customer.id, total_price: product.price)
-      end
-      
-      order_items = OrderItem.where(product_id: product.id, order_id: order.id).first
-      
-      respond_to do |format|
-        if order_items.present?
-          count = order_items.item_quantity
-          order_items.update(item_quantity: count+1)
-          total_price = count+1*(product.price)
-          if order.update(total_price: total_price)
-            format.js { }
-          else
-            format.html { render action: 'new' }
-          end
-        else
-          order_item = order.order_items.build(product_id: product.id, order_id: order.id, item_quantity: 1)            
-          if order_item.save
-            format.js { }
-          else
-            format.html { render action: 'new' }
-          end
-        end
+    respond_to do |format|
+      if @order.save
+        Cart.destroy(session[:cart_id])
+        session[:cart_id] = nil
+        format.html { redirect_to root_url, notice: 
+          'Thank you for your order.' }
+        format.json { render json: @order, status: :created,
+          location: @order }
+      else
+        @cart = current_cart
+        format.html { render action: "new" }
+        format.json { render json: @order.errors,
+          status: :unprocessable_entity }
       end
     end
   end
 
-  def destroy
+  # PUT /orders/1
+  # PUT /orders/1.json
+  def update
+    @order = Order.find(params[:id])
+
+    respond_to do |format|
+      if @order.update_attributes(order_params)
+        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @order.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
-  def show
+  # DELETE /orders/1
+  # DELETE /orders/1.json
+  def destroy
+    @order = Order.find(params[:id])
+    @order.destroy
+
+    respond_to do |format|
+      format.html { redirect_to orders_url }
+      format.json { head :no_content }
+    end
   end
+
+  private
+    def order_params
+      params.require(:order).permit(:name, :address, :email, :pay_type)
+    end
 end

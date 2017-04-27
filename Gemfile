@@ -25,6 +25,7 @@ gem 'bower-rails'
 gem 'activeadmin', github: 'activeadmin'
 gem 'paperclip'
 gem 'will_paginate'
+gem 'activemerchant'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -1,0 +1,7 @@
+$("#notice").hide();
+$(".alert").hide();
+$('#cart').html("<%=j render @cart %>");
+if ($('#cart tr').length > 1) { $('#cart').show('blind', 1000); }
+$('#current_item').css({'background-color':'#479'}).animate({'background-color':'#479'}, 1000);
+$('a#cart-section').attr("data-badge", "<%=@cart.order_items.length%>");
+$('#cart-section').addClass('badge1');

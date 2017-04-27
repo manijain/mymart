@@ -19,7 +19,14 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="<%= new_customer_session_path %>">Login</a></li>
             <li><a href="<%= new_customer_registration_path %>">Register</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Cart</a></li>
+            <% if notification = @cart && @cart.order_items.present? %>
+              <% notification = "badge1" %>
+              <% total_count = @cart.order_items.count %>
+            <% else %>
+              <% notification = "" %>
+              <% total_count = "" %>
+            <% end %>
+            <li><a href="javascript:void(0);" id="cart-section" class="<%=notification%>" data-badge="<%=total_count%>"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;Cart</a></li>
           </ul>
         </div>
       </div>

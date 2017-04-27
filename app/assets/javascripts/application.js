@@ -13,4 +13,11 @@
 //= require jquery
 //= require jquery_ujs
 //= require 'bootstrap-sass'
+//= require jquery-ui
 //= require_tree .
+
+$(document).ready(function(){
+  $("#cart-section").click(function() {
+   $("div#side").toggle("slow");
+  });
+});

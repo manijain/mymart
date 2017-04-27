@@ -11,12 +11,13 @@
  * file per style scope.
  *
  *= require 'bootstrap-sass'
+ *= require carts
  *= require_tree .
  *= require_self
  */
 
 a {
-	text-decoration: none !important;
+  text-decoration: none !important;
 }
 
 .carousel {
@@ -24,13 +25,13 @@ a {
     margin-bottom: 60px;
 }
 .carousel .item{
-	text-align: center;
+  text-align: center;
 }
 .carousel .item img{
-	display: inline-block;
+  display: inline-block;
 }
 .carousel-control{
-	background: none !important;
+  background: none !important;
 }
 
 .apple_pagination {
@@ -62,16 +63,130 @@ a {
       text-decoration: underline; }
 
 .thumbnail a > img {
-	margin-top: 25px;
+  margin-top: 25px;
 }
 
 .product-details{
-	text-align: center !important;
+  text-align: center !important;
 }
 
 .navbar-inverse .glyphicon{
-	color: #fff;
-	position: relative;
-	top: 2px;
-	margin-right: 2px;
+  color: #fff;
+  position: relative;
+  top: 2px;
+  margin-right: 2px;
 } 
+
+#notice {
+  color: #000 !important;
+  border: 2px solid red;
+  padding: 1em;
+  margin-bottom: 2em;
+  background-color: #f0f0f0;
+  font: bold smaller sans-serif;
+}
+
+#columns {
+  background: #141;
+
+  #main {
+    margin-left: 17em;
+    padding: 1em;
+    background: white;
+  }
+
+//
+  #side {
+    float: left;
+    padding: 1em 2em;
+    width: 13em;
+    background: #141;
+
+    form, div {
+      display: inline;
+    }  
+ 
+    input {
+      font-size: small;
+    }
+
+    #cart {
+      font-size: smaller;
+      color:     white;
+
+      table {
+        border-top:    1px dotted #595;
+        border-bottom: 1px dotted #595;
+        margin-bottom: 10px;
+      }
+    }
+
+    ul {
+      padding: 0;
+
+      li {
+        list-style: none;
+
+        a {
+          color: #bfb;
+          font-size: small;
+        }
+      }
+    }
+  }
+//
+}
+
+.cart_title {
+  font-size: 20px;
+  font-family: cursive;
+}
+
+.order_form {
+  fieldset {
+    background: #efe;
+    legend {
+    color: #dfd;
+    background: #141;
+    font-family: sans-serif;
+    padding: 0.2em 1em;
+    }
+  }
+  form {
+    label {
+    width: 5em;
+    float: left;
+    text-align: right;
+    padding-top: 0.2em;
+    margin-right: 0.1em;
+    display: block;
+    }
+    select, textarea, input {
+      margin-left: 0.5em;
+    }
+    .submit {
+      margin-left: 4em;
+    }
+    br {
+    display: none
+    }
+  }
+}
+
+.badge1 {
+   position:relative;
+}
+.badge1[data-badge]:after {
+   content:attr(data-badge);
+   position:absolute;
+   top:16px;
+   right:-10px;
+   font-size:.7em;
+   background:red;
+   color:white;
+   width:18px;height:18px;
+   text-align:center;
+   line-height:18px;
+   border-radius:50%;
+   box-shadow:0 0 1px #333;
+}
