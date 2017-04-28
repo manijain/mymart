@@ -26,6 +26,7 @@ gem 'activeadmin', github: 'activeadmin'
 gem 'paperclip'
 gem 'will_paginate'
 gem 'braintree'
+gem 'font-awesome-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
