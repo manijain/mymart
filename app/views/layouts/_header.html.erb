@@ -12,14 +12,12 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li class="active"><a href="/">Home</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="<%= new_customer_session_path %>">Login</a></li>
             <li><a href="<%= new_customer_registration_path %>">Register</a></li>
-            <% if notification = @cart && @cart.order_items.present? %>
+            <% if @cart && @cart.order_items.present? %>
               <% notification = "badge1" %>
               <% total_count = @cart.order_items.count %>
             <% else %>

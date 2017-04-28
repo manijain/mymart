@@ -13,4 +13,10 @@ class ApplicationController < ActionController::Base
     session[:cart_id] = cart.id
     cart
   end
+
+  def authorize_user
+    unless current_admin_user.present?
+      redirect_to root_path, alert: "You are not authorized for this request."
+    end
+  end
 end

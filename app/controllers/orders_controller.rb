@@ -1,4 +1,6 @@
 class OrdersController < ApplicationController
+  before_filter :authorize_user, only: [:index, :destroy]
+
   def index
     @orders = Order.all
 
@@ -12,6 +14,8 @@ class OrdersController < ApplicationController
   # GET /orders/1.json
   def show
     @order = Order.find(params[:id])
+    # Cart.destroy(session[:cart_id])
+    # session[:cart_id] = nil
 
     respond_to do |format|
       format.html # show.html.erb
@@ -53,10 +57,9 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
-        Cart.destroy(session[:cart_id])
-        session[:cart_id] = nil
-        format.html { redirect_to root_url, notice: 
-          'Thank you for your order.' }
+        # Cart.destroy(session[:cart_id])
+        # session[:cart_id] = nil
+        format.html { redirect_to payments_new_path(order_id: @order.id) }
         format.json { render json: @order, status: :created,
           location: @order }
       else

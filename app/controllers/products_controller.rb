@@ -1,4 +1,6 @@
 class ProductsController < InheritedResources::Base
+  before_filter :authorize_user
+
   def index
     @products = Product.all.paginate(:page => params[:page])
   end
@@ -18,7 +20,6 @@ class ProductsController < InheritedResources::Base
   end
 
   private
-
     def product_params
       params.require(:product).permit(:title, :description, :price, :quantity, :picture)
     end

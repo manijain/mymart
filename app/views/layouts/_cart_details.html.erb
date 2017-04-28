@@ -1,0 +1,21 @@
+<% unless @cart.order_items.empty? %>
+<div class="cart_title">My Cart</div><hr/>
+<table class="well">
+	<% @cart.order_items.each do |order_item| %>
+		<tr>
+		<td><%= order_item.item_quantity %>&times;</td>
+		<td><%= order_item.product.title %></td>
+		<td class="item_price"><%= number_to_currency(order_item.total_price) %></td>
+		</tr>
+	<% end %>
+
+	<tr class="total_line">
+		<td colspan="2"><strong>Total</strong></td>
+		<td class="total_cell"><strong><%= number_to_currency(@cart.total_price) %></strong></td>
+	</tr>
+</table>
+<div>
+	<%= link_to 'Empty cart', @cart, method: :delete, class: "btn btn-warning", data: {confirm: 'Are you sure?'} %> &nbsp;
+</div>
+<hr/>
+<% end %>

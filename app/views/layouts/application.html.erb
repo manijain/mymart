@@ -5,20 +5,21 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
+  <script src="https://js.braintreegateway.com/v2/braintree.js"></script>
 </head>
 <body>
 	<%= render :partial => "layouts/header" %>
 	<div class="container marketing">
 
-	<div id="side" style="display:none;">
+	<% if !["orders", "payments"].include?(params[:controller]) %>
+		<div id="side" style="display:none;">
 		<% if @cart %>
-			
-					<%= hidden_div_if(@cart.order_items.empty?, id: 'cart') do %>
-						<%= render @cart %>
-					<% end %>
-			
+			<%= hidden_div_if(@cart.order_items.empty?, id: 'cart') do %>
+				<%= render @cart %>
+			<% end %>
 		<% end %>
-	</div>
+		</div>
+	<%end%>
 
 	  <% if flash[:alert] %>
 	    <div class="alert alert-danger alert-dismissable">

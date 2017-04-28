@@ -21,3 +21,7 @@ $(document).ready(function(){
    $("div#side").toggle("slow");
   });
 });
+
+function braintree_setup(token){
+  braintree.setup(token, "custom", {id: "payment-form"});
+}

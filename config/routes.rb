@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  get 'payments/new'
+
+  post 'payments/checkout'
+
   resources :carts
   resources :products
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -11,7 +16,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'home#index'
-  resources :orders, only: [:new, :create, :destroy]
+  resources :orders, only: [:new, :create, :destroy, :show]
   resources :order_items, only: [:create, :destroy]
   # resources :store, only: [:create]
 
