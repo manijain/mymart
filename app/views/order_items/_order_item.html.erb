@@ -1,9 +1,16 @@
+<tr>
+	<td><strong>Order Item</strong></td>
+	<td><strong>Quantity</strong></td>
+	<td><strong>Price</strong></td>
+	<td class="item_price"><strong>Total Price</strong></td>
+</tr>
 <% if order_item == @current_item %>
 <tr id="current_item">
 <% else %>
 <tr>
 <% end %>
-<td><%= order_item.item_quantity %>&times;</td>
 <td><%= order_item.product.title %></td>
+<td><%= order_item.item_quantity %>&times;</td>
+<td><%= number_to_currency(order_item.product.price) %></td>
 <td class="item_price"><%= number_to_currency(order_item.total_price) %></td>
 </tr>
