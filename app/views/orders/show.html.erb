@@ -12,7 +12,7 @@
     <td><strong>Price</strong></td>
     <td class="item_price"><strong>Total Price</strong></td>
   </tr>
-  <% @order.order_items.each do |order_items| %>
+  <% @order.order_items.each do |order_item| %>
     <tr>
       <td><%= order_item.product.title %></td>
       <td><%= order_item.item_quantity %>&times;</td>
