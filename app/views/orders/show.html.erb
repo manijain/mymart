@@ -6,16 +6,23 @@
 
 <p><u>Your order details</u></p>
 <table class="well">
-  <% @order.order_items.each do |item| %>
+  <tr>
+    <td><strong>Order Item</strong></td>
+    <td><strong>Quantity</strong></td>
+    <td><strong>Price</strong></td>
+    <td class="item_price"><strong>Total Price</strong></td>
+  </tr>
+  <% @order.order_items.each do |order_items| %>
     <tr>
-      <td><%= item.item_quantity %>&times;</td>
-      <td><%= item.product.title %></td>
-      <td class="item_price"><%= number_to_currency(item.total_price) %></td>
+      <td><%= order_item.product.title %></td>
+      <td><%= order_item.item_quantity %>&times;</td>
+      <td><%= number_to_currency(order_item.product.price) %></td>
+      <td class="item_price"><%= number_to_currency(order_item.total_price) %></td>
     </tr>
   <% end %>
 
   <tr class="total_line">
-    <td colspan="2"><strong>Total</strong></td>
+    <td colspan="3"><strong>Total</strong></td>
     <td class="total_cell"><%= number_to_currency(@order.order_items.to_a.sum { |item| item.total_price }) %></td>
   </tr>
 </table>

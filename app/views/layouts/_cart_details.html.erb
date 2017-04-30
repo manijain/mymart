@@ -1,5 +1,7 @@
 <% unless @cart.order_items.empty? %>
 <div class="cart_title">My Cart</div><hr/>
+<div class="row">
+<div class="col-sm-6">
 <table class="well">
 	<tr>
 		<td><strong>Order Item</strong></td>
@@ -23,6 +25,8 @@
 </table>
 <div>
 	<%= link_to 'Empty cart', @cart, method: :delete, class: "btn btn-warning", data: {confirm: 'Are you sure?'} %> &nbsp;
+</div>
+</div>
 </div>
 <hr/>
 <% end %>

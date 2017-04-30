@@ -1,6 +1,12 @@
 <% unless cart.order_items.empty? %>
 <div class="cart_title">My Cart</div><hr/>
 <table class="well">
+	<tr>
+		<td><strong>Order Item</strong></td>
+		<td><strong>Quantity</strong></td>
+		<td><strong>Price</strong></td>
+		<td class="item_price"><strong>Total Price</strong></td>
+	</tr>
 	<%= render(cart.order_items) %>
 	<tr class="total_line">
 		<td colspan="3"><strong>Total</strong></td>

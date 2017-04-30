@@ -8,11 +8,11 @@
   </div>
   <div class="form-group">
     <%= label_tag 'Card number - (between 12 to 19 digit)' %>
-    <%= text_field_tag 'Card number', nil, name: nil, placeholder: 'Card number', data: {'braintree-name' => 'number'}, class: 'form-control', :pattern=>"[0-9]{12, 19}", :required => true %>
+    <%= text_field_tag 'Card number', nil, name: nil, placeholder: 'Card number', data: {'braintree-name' => 'number'}, class: 'form-control', :required => true %>
   </div>
   <div class="form-group">
     <%= label_tag 'Cvv number - (3 digit number)' %>
-    <%= password_field_tag 'Cvv number', nil, name: nil, placeholder: 'CVV', data: {'braintree-name' => 'cvv'}, class: 'form-control', :pattern=>"[0-9]{3}", :required => true %>
+    <%= password_field_tag 'Cvv number', nil, name: nil, placeholder: 'CVV', data: {'braintree-name' => 'cvv'}, class: 'form-control', :pattern=>"[0-9]{3,4}", :required => true %>
   </div>
   <div class="form-group">
     <%= label_tag 'Month - (MM)' %>
