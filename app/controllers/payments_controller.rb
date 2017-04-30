@@ -31,7 +31,7 @@ class PaymentsController < ApplicationController
         
         puts "success --- #{result.transaction.id}"
         # response[:transaction_id] = result.transaction.id
-        format.html { redirect_to order_path(@order), notice: 'Order was successfully Placed.' }
+        format.html { redirect_to order_path(@order), notice: 'Your order successfully placed.' }
         format.json { head :no_content }
       elsif result.transaction
         puts "Error Processiong Transaction"
