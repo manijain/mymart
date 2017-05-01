@@ -2,6 +2,6 @@ $("#notice").hide();
 $(".alert").hide();
 $('#cart').html("<%=j render @cart %>");
 if ($('#cart tr').length > 1) { $('#cart').show('blind', 1000); }
-$('#current_item').css({'background-color':'thistle'}).animate({'background-color':'thistle'}, 1000);
+$('#current_item').css({'background-color':'#ADD8E6'}).animate({'background-color':'#ADD8E6'}, 1000);
 $('a#cart-section').attr("data-badge", "<%=@cart.order_items.length%>");
 $('#cart-section').addClass('badge1');

@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
-  before_filter :authorize_user, only: [:index, :destroy]
+  before_action :authorize_user, only: [:index, :destroy, :update, :edit]
+  before_action :authenticate_customer!, only: [:new, :create, :show, :my_orders]
 
   def index
     @orders = Order.all
@@ -97,6 +98,10 @@ class OrdersController < ApplicationController
       format.html { redirect_to orders_url }
       format.json { head :no_content }
     end
+  end
+
+  def my_orders
+    @customer_orders = current_customer.orders
   end
 
   private

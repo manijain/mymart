@@ -1,4 +1,6 @@
 class PaymentsController < ApplicationController
+  before_action :authenticate_customer!, only: [:new, :checkout]
+
   def new
     @order = Order.find(params[:order_id])
     @total = 0.0
