@@ -9,11 +9,16 @@ class ApplicationController < ActionController::Base
   def current_cart
     # Cart.find(session[:cart_id])
     # rescue ActiveRecord::RecordNotFound
-    if customer_signed_in?
-      cart = current_customer.cart
-      cart = Cart.create(customer_id: current_customer.id) unless cart.present?
-      cart
-    end
+    # if customer_signed_in?
+    #   cart = current_customer.cart
+    #   cart = Cart.create(customer_id: current_customer.id) unless cart.present?
+    #   cart
+    # end
+    Cart.find(session[:cart_id])
+    rescue ActiveRecord::RecordNotFound
+    cart = Cart.create
+    session[:cart_id] = cart.id
+    cart
   end
 
   def authorize_user
