@@ -27,6 +27,7 @@ gem 'paperclip'
 gem 'will_paginate'
 gem 'braintree'
 gem 'font-awesome-rails'
+gem 'jquery-validation-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

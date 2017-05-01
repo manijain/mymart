@@ -11,12 +11,13 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.validate
 //= require jquery_ujs
 //= require 'bootstrap-sass'
 //= require jquery-ui
 //= require_tree .
 
-$(document).ready(function(){
+$(document).ready(function(){  
   $("#cart-section").click(function() {
    $("div#side").toggle("slow");
   });
@@ -25,3 +26,13 @@ $(document).ready(function(){
 function braintree_setup(token){
   braintree.setup(token, "custom", {id: "payment-form"});
 }
+
+// $(document).ready(function(){
+// 	$(“#new_order").validate({
+// 	debug: true,
+// 	rules: {
+// 		“order[name]“:{required: true},
+// 		“order[address]“:{required: true}
+// 	}
+//   });
+// });
