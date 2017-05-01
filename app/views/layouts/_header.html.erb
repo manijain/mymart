@@ -15,8 +15,14 @@
             <li class="active"><a href="/">Home</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="<%= new_customer_session_path %>">Login</a></li>
-            <li><a href="<%= new_customer_registration_path %>">Register</a></li>
+            <% if customer_signed_in? %>
+              <li><a>Welcome !! <%= current_customer.first_name.capitalize %></a></li>
+              <li><%= link_to "My Orders", my_orders_orders_path %></li>
+              <li><%= link_to "Log out", destroy_customer_session_path, :method => :delete %></li>
+            <% else %>
+              <li><%= link_to "Login", new_customer_session_path %></li>
+              <li><%= link_to "Register", new_customer_registration_path %></li>
+            <% end %>
             <% if @cart && @cart.order_items.present? %>
               <% notification = "badge1" %>
               <% total_count = @cart.order_items.count %>

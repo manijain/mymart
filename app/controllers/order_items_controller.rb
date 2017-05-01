@@ -1,4 +1,6 @@
 class OrderItemsController < ApplicationController
+  before_action :authenticate_customer!, only: [:create]
+
   def index
     @order_items = OrderItem.all
 

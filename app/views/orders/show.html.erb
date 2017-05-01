@@ -1,15 +1,15 @@
-<h4>Thanks you for your order !!</h4>
-<h5><u>Delivery Address</u></h5>
-<p class="order-notice">your order will be delivered next 5 to 7 working days.</p>
+<h4>Thanks you for your order !!</h4><br/>
+<p class="order-notice">Your order will be delivered in next 5 to 7 working days.</p>
 <div class="row">
 <div class="col-sm-4 well">
+  <h5><u>Delivery Address</u></h5>
   <p><strong><%= @order.name %></strong></p><p><%= @order.email %></p>
   <p><%= @order.address %></p>
 </div>
 
-<div class="col-sm-6">
-<p><u>Your order details</u></p>
-<table class="well">
+<div class="col-sm-6 well order-details">
+<h5><u>Your order details</u></h5>
+<table class="table">
   <tr>
     <td><strong>Order Item</strong></td>
     <td><strong>Quantity</strong></td>
@@ -25,7 +25,7 @@
     </tr>
   <% end %>
 
-  <tr class="total_line">
+  <tr class="total_line success">
     <td colspan="3"><strong>Total</strong></td>
     <td class="total_cell"><%= number_to_currency(@order.order_items.to_a.sum { |item| item.total_price }) %></td>
   </tr>

@@ -3,7 +3,7 @@ class Product < ActiveRecord::Base
   validates :price, numericality: {greater_than_or_equal_to: 0.01}
   validates :quantity, numericality: {only_integer: true }
   validates :title, uniqueness: true
-  has_attached_file :picture, :styles => { :small => "150x150>" }
+  has_attached_file :picture, :styles => { :small => "150x150>", :medium => "250x250>" }
   validates_attachment_content_type :picture, :content_type => ["image/jpg", "image/jpeg", "image/png", "image/gif"], default_url: "/images/missing.png"
   # validates_attachment_presence :picture
   validates_attachment_size :picture, :less_than => 8.megabytes

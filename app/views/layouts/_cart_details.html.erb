@@ -2,7 +2,7 @@
 <div class="cart_title">My Cart</div><hr/>
 <div class="row">
 <div class="col-sm-6">
-<table class="well">
+<table class="well table">
 	<tr>
 		<td><strong>Order Item</strong></td>
 		<td><strong>Quantity</strong></td>
@@ -16,9 +16,9 @@
 			<td><%= number_to_currency(order_item.product.price) %></td>
 			<td class="item_price"><%= number_to_currency(order_item.total_price) %></td>
 		</tr>
-	<% end %>
+	<% end %><br/>
 
-	<tr class="total_line">
+	<tr class="total_line success">
 		<td colspan="3"><strong>Total</strong></td>
 		<td class="total_cell"><strong><%= number_to_currency(@cart.total_price) %></strong></td>
 	</tr>

@@ -1,12 +1,11 @@
 class ProductsController < InheritedResources::Base
-  before_filter :authorize_user
+  before_action :authorize_user, only: [:destroy, :update, :create, :edit, :index]
 
   def index
     @products = Product.all.paginate(:page => params[:page])
   end
 
   def create
-  	debugger
   	@product = Product.new(product_params)
   	respond_to do |format|
       if @product.save

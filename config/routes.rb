@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   get 'payments/new'
-
   post 'payments/checkout'
 
   resources :carts
@@ -16,7 +15,10 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'home#index'
-  resources :orders, only: [:new, :create, :destroy, :show]
+  resources :orders, only: [:new, :create, :destroy, :show] do
+    get 'my_orders', on: :collection
+  end
+
   resources :order_items, only: [:create, :destroy]
   # resources :store, only: [:create]
 

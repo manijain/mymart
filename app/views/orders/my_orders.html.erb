@@ -1,0 +1,33 @@
+<div class="col-sm-6">
+  <h4>Your previous order details</h4>
+  <% if @customer_orders.present? %>
+    <table class="well">
+      <tr>
+        <td><strong>Order Item</strong></td>
+        <td><strong>Quantity</strong></td>
+        <td><strong>Price</strong></td>
+        <td class="item_price"><strong>Total Price</strong></td>
+      </tr>
+    </table>
+
+    <% @customer_orders.each do |order| %>
+      <h4><b>Order#<%= order.id%></b></h4>
+      <table class="table">
+        <% order.order_items.each do |order_item| %>
+          <tr>
+            <td><%= order_item.product.title %></td>
+            <td><%= order_item.item_quantity %>&times;</td>
+            <td><%= number_to_currency(order_item.product.price) %></td>
+            <td class="item_price"><%= number_to_currency(order_item.total_price) %></td>
+          </tr>
+        <% end %>
+        <tr class="total_line success">
+          <td colspan="3"><strong>Total</strong></td>
+          <td class="total_cell"><%= number_to_currency(order.order_items.to_a.sum { |item| item.total_price }) %></td>
+        </tr>
+      </table>
+    <% end %>
+  <% else %>
+    <p>Curently not available</p>
+  <% end %>
+</div>
