@@ -50,9 +50,7 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-    if current_customer.present?
-      @order.customer_id = current_customer.id
-    end
+    @order.customer = current_customer
 
     @order.add_order_items_from_cart(current_cart)
 

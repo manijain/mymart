@@ -27,9 +27,10 @@ class PaymentsController < ApplicationController
     respond_to do |format|
       if result.success?
         OrderItem.where('cart_id = ?', current_cart.id).update_all(cart_id: nil)
+        current_cart.delete
         # current_cart.order_items.delete_all
-        Cart.destroy(session[:cart_id])
-        session[:cart_id] = nil
+        # Cart.destroy(session[:cart_id])
+        # session[:cart_id] = nil
         
         puts "success --- #{result.transaction.id}"
         # response[:transaction_id] = result.transaction.id
