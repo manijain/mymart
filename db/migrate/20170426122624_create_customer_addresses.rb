@@ -7,8 +7,8 @@ class CreateCustomerAddresses < ActiveRecord::Migration
       t.string :district
       t.string :state
       t.string :country
-      t.integer :pincode
-      t.integer :contact_details
+      t.string :pincode
+      t.string :contact_details
       t.references :order
 
       t.timestamps null: false

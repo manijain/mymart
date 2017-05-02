@@ -66,8 +66,8 @@ ActiveRecord::Schema.define(version: 20170502124850) do
     t.string   "district",        limit: 255
     t.string   "state",           limit: 255
     t.string   "country",         limit: 255
-    t.integer  "pincode",         limit: 4
-    t.integer  "contact_details", limit: 4
+    t.string   "pincode",         limit: 255
+    t.string   "contact_details", limit: 255
     t.integer  "order_id",        limit: 4
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false

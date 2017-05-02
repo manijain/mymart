@@ -2,7 +2,8 @@ class CustomerAddressesController < ApplicationController
   before_action :authorize_user, only: [:index, :destroy]
   before_action :authenticate_customer!, only: [:new, :create, :show]
 
-  def new
+  def new 
+    debugger
     @cart = current_cart
     if @cart.order_items.empty?
       redirect_to root_url, notice: "Your cart is empty"
@@ -21,10 +22,10 @@ class CustomerAddressesController < ApplicationController
     @order.customer = current_customer
     # current_cart.customer = current_customer
     @order.add_order_items_from_cart(current_cart)
-    customer_address_params[:customer_id] = current_customer.id
-    @order = @order.bulid_customer_address(customer_address_params)
+    @customer_address = @order.build_customer_address(customer_address_params)
+    @customer_address.customer = current_customer
     respond_to do |format|
-      if @order.save
+      if @customer_address.save
         # if session[:cart_id].present?
         #   Cart.destroy(session[:cart_id])
         #   session[:cart_id] = nil

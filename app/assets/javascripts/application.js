@@ -22,33 +22,44 @@ $(document).ready(function(){
    $("div#side").toggle("slow");
   });
 
+  // jQuery.validator.setDefaults({
+  // 	debug: true,
+  // 	success: 'valid'
+  // });
+
   /* delivery address validation */
   $('#new_customer_address').validate({
 	debug: true,
 	rules: {
-		'customer_address[address1]':{required: true},
-		'customer_address[city]':{required: true},
-		'customer_address[district]':{required: true},
-		'customer_address[state]':{required: true},
-		'customer_address[country]':{required: true},
-		'customer_address[contact_details]':{required: true},
-		'customer_address[pincode]':{required: true}
-	}
+		'customer_address[address1]':{required: true, maxlength: 250 },
+		'customer_address[city]':{required: true, maxlength: 250 },
+		'customer_address[district]':{required: true, maxlength: 80},
+		'customer_address[state]':{required: true, maxlength: 80},
+		'customer_address[country]':{required: true, maxlength: 80},
+		'customer_address[contact_details]':{required: true, minlength: 10, maxlength: 12, number: true},
+		'customer_address[pincode]':{required: true, minlength: 5, maxlength: 7, number: true }
+	},
+
+	submitHandler: function(form) {
+      form.submit();
+    } 
   });
 
   /* payment validation */
- //  $('#payment-form').validate({
-	// debug: true,
-	// rules: {
-	// 	'customer_address[pincode]':{required: true},
-	// 	'customer_address[address1]':{required: true},
-	// 	'customer_address[city]':{required: true},
-	// 	'customer_address[district]':{required: true},
-	// 	'customer_address[state]':{required: true},
-	// 	'customer_address[country]':{required: true},
-	// 	'customer_address[contact_details]':{required: true},
-	// }
- //  });
+  $('#payment-form').validate({
+	debug: true,
+	rules: {
+		'Card number':{required: true, minlength: 12, maxlength: 19, number: true},
+		'Cvv number':{required: true, minlength: 3, maxlength: 3, number: true},
+		'Month':{required: true, number: true, minlength: 1, maxlength: 2},
+		'Year':{required: true, number: true, minlength: 4, maxlength: 4},
+		'Cardholder name':{required: true, maxlength: 80}
+	},
+
+	submitHandler: function(form) {
+      form.submit();
+    } 
+  });
 
 });
 

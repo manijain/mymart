@@ -10,18 +10,19 @@ class ApplicationController < ActionController::Base
     if customer_signed_in?
       if current_customer.cart.present? && session[:cart_id].present?
         user_cart = current_customer.cart
-        cart = Cart.find(session[:cart_id])
-        if cart.present? && cart.order_items.present?
+        cart = Cart.find_by_id(session[:cart_id])
+        if cart.present? && cart.order_items.present? && (cart.id != user_cart.id)
           cart.order_items.each do |item|
             item.cart = user_cart
             item.save
           end
-          cart.destroy
+          # cart.destroy
           cart = user_cart
+          return cart
         else
-          cart = current_customer.cart
+          cart = user_cart
+          return cart
         end
-        return cart
       elsif current_customer.cart.present?
         cart = current_customer.cart
         return cart
