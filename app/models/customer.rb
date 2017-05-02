@@ -5,5 +5,6 @@ class Customer < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :orders, dependent: :destroy
-  has_one :cart, dependent: :destroy 
+  has_one :cart, dependent: :destroy
+  has_many :customer_addresses, dependent: :destroy
 end

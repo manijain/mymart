@@ -1,4 +1,4 @@
-<% unless @cart.order_items.empty? %>
+<% unless order.order_items.empty? %>
 <div class="cart_title">My Cart</div><hr/>
 <div class="row">
 <div class="col-sm-6">
@@ -9,7 +9,7 @@
 		<td><strong>Price</strong></td>
 		<td class="item_price"><strong>Total Price</strong></td>
 	</tr>
-	<% @cart.order_items.each do |order_item| %>
+	<% order.order_items.each do |order_item| %>
 		<tr>
 			<td><%= order_item.product.title %></td>
 			<td><%= order_item.item_quantity %>&times;</td>
@@ -20,7 +20,7 @@
 
 	<tr class="total_line success">
 		<td colspan="3"><strong>Total</strong></td>
-		<td class="total_cell"><strong><%= number_to_currency(@cart.total_price) %></strong></td>
+		<td class="total_cell"><strong><%= number_to_currency(order.total_price) %></strong></td>
 	</tr>
 </table>
 <div>

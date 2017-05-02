@@ -3,8 +3,12 @@
 <div class="row">
 <div class="col-sm-4 well">
   <h5><u>Delivery Address</u></h5>
-  <p><strong><%= @order.name %></strong></p><p><%= @order.email %></p>
-  <p><%= @order.address %></p>
+  <p><strong><%= @address.address1 %></strong><br/>
+  <strong><%= @address.address2 %></strong></p>
+
+  <p><%= @address.city %> | <%= @address.district %> </p>
+  <p><%= @address.state %> | <%= @address.country %> </p>
+  <p><%= @address.pincode %></p>
 </div>
 
 <div class="col-sm-6 well order-details">

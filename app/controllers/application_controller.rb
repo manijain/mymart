@@ -7,13 +7,34 @@ class ApplicationController < ActionController::Base
   private
   
   def current_cart
-    # Cart.find(session[:cart_id])
-    # rescue ActiveRecord::RecordNotFound
-    # if customer_signed_in?
-    #   cart = current_customer.cart
-    #   cart = Cart.create(customer_id: current_customer.id) unless cart.present?
-    #   cart
-    # end
+    if customer_signed_in?
+      if current_customer.cart.present? && session[:cart_id].present?
+        user_cart = current_customer.cart
+        cart = Cart.find(session[:cart_id])
+        if cart.present? && cart.order_items.present?
+          cart.order_items.each do |item|
+            item.cart = user_cart
+            item.save
+          end
+          cart.destroy
+          cart = user_cart
+        else
+          cart = current_customer.cart
+        end
+        return cart
+      elsif current_customer.cart.present?
+        cart = current_customer.cart
+        return cart
+      elsif session[:cart_id].present?
+        cart = Cart.find(session[:cart_id])
+        cart.update_attributes(customer_id: current_customer.id)
+        return cart
+      else
+        cart = Cart.create(customer_id: current_customer.id)
+        return cart
+      end
+    end
+
     Cart.find(session[:cart_id])
     rescue ActiveRecord::RecordNotFound
     cart = Cart.create

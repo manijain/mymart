@@ -17,7 +17,10 @@ Rails.application.routes.draw do
   root 'home#index'
   resources :orders, only: [:new, :create, :destroy, :show] do
     get 'my_orders', on: :collection
+    get 'shipping_charge'
   end
+
+  resources :customer_addresses
 
   resources :order_items, only: [:create, :destroy]
   # resources :store, only: [:create]
