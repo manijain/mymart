@@ -215,3 +215,25 @@ a {
 .product-show p {
   font-size: 14px!important;
 }
+
+.error {
+ display: block; color: red;padding-top: 5px; 
+}
+
+input.error, select.error{
+  color: #333;
+}
+
+#error-message {
+  padding-bottom: 5px;
+}
+
+#error_explanation ui {
+  padding-left: 25px;
+}
+
+.field_with_errors {
+  padding: 0px!important;
+  background-color: white!important;
+  display: inline!important;
+}

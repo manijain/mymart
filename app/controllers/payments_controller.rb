@@ -14,6 +14,8 @@ class PaymentsController < ApplicationController
   def checkout
     total_price = params[:total_price]
     @order = Order.find(params[:order_id])
+    cart = current_cart
+    @order.update_attributes(shipping: cart.shipping)
 
     nonce_from_the_client = params[:payment_method_nonce]
     result = Braintree::Transaction.sale(
@@ -26,8 +28,10 @@ class PaymentsController < ApplicationController
     # response = {:success => result.success?}
     respond_to do |format|
       if result.success?
+        @order.update_attributes(status: "1")
         OrderItem.where('cart_id = ?', current_cart.id).update_all(cart_id: nil)
-        Cart.where('customer_id = ?', current_customer.id).update_all(customer_id: nil)
+        # Cart.where('customer_id = ?', current_customer.id).update_all(customer_id: nil)
+        Cart.where('customer_id = ?', current_customer.id).delete_all
         if session[:cart_id].present?
           Cart.destroy(session[:cart_id])
           session[:cart_id] = nil
@@ -37,12 +41,14 @@ class PaymentsController < ApplicationController
         format.html { redirect_to order_path(@order), notice: 'Your order successfully placed.' }
         format.json { head :no_content }
       elsif result.transaction
+        @order.update_attributes(status: "0")
         puts "Error Processiong Transaction"
         # response[:error] = result.transaction.processor_response_text
         # format.html { render :action => 'new', alert: result.transaction.processor_response_text } 
         format.html { redirect_to payments_new_path(order_id: @order.id), alert: result.transaction.processor_response_text }
         format.json { head :no_content }
       else
+        @order.update_attributes(status: "0")
         puts result.errors
         # response[:error] = result.errors.inspect
         # format.html { render :action => 'new', alert: result.errors.map(&:message).join(",") } 

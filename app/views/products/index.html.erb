@@ -1,6 +1,5 @@
-<h1>Listing Products</h1>
-
-<table>
+<h3>Manage Products</h3><hr/>
+<table class="table">
   <thead>
     <tr>
       <th>Title</th>
@@ -25,7 +24,7 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
+<div class="apple_pagination">
+  <%= will_paginate @products %>
+</div><hr/>
 <%= link_to 'New Product', new_product_path %>

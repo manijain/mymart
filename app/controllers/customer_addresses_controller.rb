@@ -1,10 +1,12 @@
 class CustomerAddressesController < ApplicationController
   before_action :authorize_user, only: [:index, :destroy]
-  before_action :authenticate_customer!, only: [:new, :create, :show]
+  before_action :authenticate_customer!, only: [:new, :create, :show, :edit, :update]
 
   def new 
     debugger
     @cart = current_cart
+    @cart.shipping = nil
+    @cart.save
     if @cart.order_items.empty?
       redirect_to root_url, notice: "Your cart is empty"
       return

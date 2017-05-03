@@ -1,4 +1,7 @@
-<%= render partial: 'layouts/cart_details', locals: {order: @cart} %>
+<div id="cart_details">
+  <%= render partial: 'layouts/cart_details', locals: {cart: @cart} %>
+</div>
+
 <ul class="nav nav-tabs">
   <li class="active"> <a href="#address" data-target="#address" data-toggle="tab">Delivery Address</a></li>
 </ul>

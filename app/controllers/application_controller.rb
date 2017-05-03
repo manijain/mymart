@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize_user
-    unless current_admin_user.present?
+    if !customer_signed_in? && !current_customer.is_admin?
       redirect_to root_path, alert: "You are not authorized for this request."
     end
   end

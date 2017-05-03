@@ -13,28 +13,28 @@
       </div>
     <% end %>
 
-    <div class="field">
+    <div class="form-group">
       <%= f.label :title %><br>
-      <%= f.text_field :title %>
+      <%= f.text_field :title, :class=> "form-control" %>
     </div>
-    <div class="field">
+    <div class="form-group">
       <%= f.label :description %><br>
-      <%= f.text_area :description %>
+      <%= f.text_area :description, :class=> "form-control" %>
     </div>
-    <div class="field">
+    <div class="form-group">
       <%= f.label :price %><br>
-      <%= f.text_field :price %>
+      <%= f.text_field :price, :class=> "form-control" %>
     </div>
-    <div class="field">
+    <div class="form-group">
       <%= f.label :quantity %><br>
-      <%= f.number_field :quantity %>
+      <%= f.number_field :quantity, :class=> "form-control" %>
     </div>
     <div>
       <%= f.label :picture, "Product Picture" %>
-      <%= f.file_field :picture %>
-    </div>
+      <%= f.file_field :picture, :id=> "exampleInputFile" %>
+    </div><br/>
     <div class="actions">
-      <%= f.submit %>
+      <%= f.submit class: "btn btn-default" %>
     </div>
   <% end %>
   </div>

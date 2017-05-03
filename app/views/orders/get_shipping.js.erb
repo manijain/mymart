@@ -1,0 +1,8 @@
+$('#cart_details').html('<%= escape_javascript(render :partial => "layouts/cart_details", :locals => {:cart => @cart})%>');
+<% if @message.present? %>
+	$('#error-message').html("<p><%= @message%></p>")
+	$('input[type=submit]').attr('disabled', 'disabled');
+<% else %>
+	$('input[type=submit]').removeAttr("disabled")
+	$('#error-message').html('');
+<% end %>

@@ -1,9 +1,9 @@
 class OrdersController < ApplicationController
   before_action :authorize_user, only: [:index, :destroy, :update, :edit]
-  before_action :authenticate_customer!, only: [:new, :create, :show, :my_orders]
+  before_action :authenticate_customer!, only: [:new, :create, :show, :my_orders, :get_shipping]
 
   def index
-    @orders = Order.all
+    @orders = Order.all.paginate(:page => params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -103,14 +103,21 @@ class OrdersController < ApplicationController
     @customer_orders = current_customer.orders
   end
 
-  def shipping_charge
-    if params[:country] == "Russia"
-      @message = "Sorry !! we are not deliver for this location"
+  def get_shipping
+    @cart = current_cart
+    if params[:country_name] == "Russia"
+      @cart.shipping = nil
+      @cart.save
+      @message = "Sorry!! we are not deliver for this country"
     else
-      if ["India", "Paris"].include?(params[:country])
-        @shipping = 10
+      if ["India", "Paris"].include?(params[:country_name])
+        # @shipping = 10
+        @cart.shipping = 10
+        @cart.save
       else
-        @shipping = 30
+        # @shipping = 30
+        @cart.shipping = 30
+        @cart.save
       end
     end
   end

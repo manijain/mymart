@@ -15,7 +15,6 @@
 //= require 'bootstrap-sass'
 //= require jquery-ui
 //= require jquery.validate
-//= require_tree .
 
 $(document).ready(function(){  
   $("#cart-section").click(function() {
@@ -61,12 +60,59 @@ $(document).ready(function(){
     } 
   });
 
+  /* customer registration validation */
+  $('#new_customer').validate({
+	debug: true,
+	rules: {
+		'customer[first_name]':{required: true, maxlength: 50},
+		'customer[last_name]':{required: true, maxlength: 50},
+		'customer[email]':{required: true},
+		'customer[password]':{required: true, maxlength: 50},
+		'customer[password_confirmation]':{required: true, maxlength: 50}
+	},
+
+	submitHandler: function(form) {
+      form.submit();
+    } 
+  });
+
+
+  /* product validation */
+  $('#new_product').validate({
+  debug: true,
+  rules: {
+    'product[title]':{required: true, maxlength: 50},
+    'product[description]':{required: true, maxlength: 150},
+    'product[price]':{required: true, number: true},
+    'product[quantity]':{required: true, number: true},
+  },
+
+  submitHandler: function(form) {
+      form.submit();
+    } 
+  });
+
+  $('#customer_address_country').change(function(){
+    var country = $('#customer_address_country option:selected').val()
+    $.ajax({
+      url: "/orders/get_shipping",
+      type: "GET",
+      data: { country_name: country },
+      dataType: "script",
+        beforeSend : function(){
+        },
+        success: function(){
+          console.log("success");
+        },
+        complete: function(){
+          console.log("success");
+        }
+    })
+});
+
+
 });
 
 function braintree_setup(token){
   braintree.setup(token, "custom", {id: "payment-form"});
 }
-
-$(document).ready(function(){
-	
-});

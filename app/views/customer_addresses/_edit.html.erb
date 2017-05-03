@@ -1,8 +1,9 @@
 <div class="address_form">
 <fieldset>
   <h3>Update Your Address Details</h3>
+  <% debugger %>
   	<div class="well">
-  		<% @customer_address = address %>
+  		<% @customer_address = @order.customer_address %>
     	<%= render 'form' %>
   	</div>
 </fieldset>

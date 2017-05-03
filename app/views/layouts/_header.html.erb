@@ -17,6 +17,11 @@
           <ul class="nav navbar-nav navbar-right">
             <% if customer_signed_in? %>
               <li><a>Welcome !! <%= current_customer.first_name.capitalize %></a></li>
+              <% if current_customer.is_admin %>
+                <li><%= link_to "Order Details", orders_path %></li>
+                <li><%= link_to "Manage Product", products_path %></li>
+                <li><%= link_to "Customers Details", customers_path %></li>
+              <% end %>
               <li><%= link_to "My Orders", my_orders_orders_path %></li>
               <li><%= link_to "Log out", destroy_customer_session_path, :method => :delete %></li>
             <% else %>

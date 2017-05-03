@@ -20,6 +20,7 @@
     <td><strong>Price</strong></td>
     <td class="item_price"><strong>Total Price</strong></td>
   </tr>
+  
   <% @order.order_items.each do |order_item| %>
     <tr>
       <td><%= order_item.product.title %></td>
@@ -29,9 +30,14 @@
     </tr>
   <% end %>
 
+  <tr class="shipping">
+    <td colspan="3"><strong>Shipping</strong></td>
+    <td class="total_cell"><strong><%= number_to_currency(@order.shipping) %></strong></td>
+  </tr>
+
   <tr class="total_line success">
     <td colspan="3"><strong>Total</strong></td>
-    <td class="total_cell"><%= number_to_currency(@order.order_items.to_a.sum { |item| item.total_price }) %></td>
+    <td class="total_cell"><%= number_to_currency((@order.total_price) + @order.shipping) %></td>
   </tr>
 </table>
 </div>

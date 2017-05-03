@@ -7,4 +7,12 @@ class Customer < ActiveRecord::Base
   has_many :orders, dependent: :destroy
   has_one :cart, dependent: :destroy
   has_many :customer_addresses, dependent: :destroy
+
+  def is_admin?
+    is_admin
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

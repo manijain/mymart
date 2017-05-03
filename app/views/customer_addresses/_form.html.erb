@@ -35,6 +35,8 @@ prohibited this order from being saved:</h2>
 <%= f.select :country, CustomerAddress::COUNTRIES,
 prompt: 'Select a Country' %>
 </div>
+<div id="error-message" class="error">
+</div>
 <div class="field">
 <%= f.label :pincode %><br />
 <%= f.number_field :pincode %>

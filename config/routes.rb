@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
 
+  get 'customers/index'
+
   get 'payments/new'
   post 'payments/checkout'
 
   resources :carts
   resources :products
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
+  # devise_for :admin_users, ActiveAdmin::Devise.config
   # get 'home/index'
 
   devise_for :customers, :controllers => { registrations: 'registrations' }
@@ -15,14 +16,15 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'home#index'
-  resources :orders, only: [:new, :create, :destroy, :show] do
+  
+  resources :orders do
     get 'my_orders', on: :collection
-    get 'shipping_charge'
+    get 'get_shipping', on: :collection
   end
 
   resources :customer_addresses
-
   resources :order_items, only: [:create, :destroy]
+  resources :customers, only: [:index]
   # resources :store, only: [:create]
 
   # Example of regular route:
