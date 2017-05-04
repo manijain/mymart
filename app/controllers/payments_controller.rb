@@ -31,7 +31,7 @@ class PaymentsController < ApplicationController
         @order.update_attributes(status: "1")
         OrderItem.where('cart_id = ?', current_cart.id).update_all(cart_id: nil)
         # Cart.where('customer_id = ?', current_customer.id).update_all(customer_id: nil)
-        Cart.where('customer_id = ?', current_customer.id).delete_all
+        # Cart.where('customer_id = ?', current_customer.id).delete_all
         if session[:cart_id].present?
           Cart.destroy(session[:cart_id])
           session[:cart_id] = nil
