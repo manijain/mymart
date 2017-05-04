@@ -1,4 +1,4 @@
-class CartsController < InheritedResources::Base
+class CartsController < ApplicationController
 
   # GET /carts
   # GET /carts.json
