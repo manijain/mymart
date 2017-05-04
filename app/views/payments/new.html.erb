@@ -4,19 +4,16 @@
 <%#= link_to "Edit address", edit_order_path(params[:order_id]) %>
 
   <ul class="nav nav-tabs">
-    <li class="active"> <a href="#address" data-target="#address" data-toggle="tab">Delivery Address</a></li>
-    <li><a href="#payment" data-target="#payment" data-toggle="tab" class="disabled">Payment Details</a></li>
+    <li> <a href="#address" data-target="#address" data-toggle="tab">Delivery Address</a></li>
+    <li class="active"><a href="#payment" data-target="#payment" data-toggle="tab" class="disabled">Payment Details</a></li>
   </ul>
-
   <div class="tab-content">
     <div class="tab-pane" id="address">
       <div class="address_form">
         <fieldset>
           <h3>Update Your Address Details</h3>
-          <div class="well">
             <% @customer_address = @order.customer_address %>
             <%= render partial: 'customer_addresses/form', local: {customer_address: @customer_address } %>
-          </div>
         </fieldset>
       </div>
     </div>
@@ -45,7 +42,7 @@
       <%= hidden_field_tag 'total_price', @total %>
       <%= hidden_field_tag 'order_id', @order.id %>
       <div class="form-group">
-        <%= submit_tag 'Submit', class: 'btn btn-default' %>
+        <%= submit_tag 'Submit', class: 'btn btn-success' %>
       </div>
       <% end %>
     </div>
