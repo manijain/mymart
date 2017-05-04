@@ -3,7 +3,6 @@ class CustomerAddressesController < ApplicationController
   before_action :authenticate_customer!, only: [:new, :create, :show, :edit, :update]
 
   def new 
-    debugger
     @cart = current_cart
     @cart.shipping = nil
     @cart.save
