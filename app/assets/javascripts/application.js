@@ -56,8 +56,14 @@ $(document).ready(function(){
 	},
 
 	submitHandler: function(form) {
-      form.submit();
-    } 
+    form.submit();
+    // if $('#payment-form').valid(){
+    // form.submit();
+    // } else {
+    //   return false;
+    //   // e.preventDefault()
+    //   }
+    // }
   });
 
   /* customer registration validation */

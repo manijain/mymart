@@ -1,6 +1,7 @@
 class OrdersController < ApplicationController
   before_action :authorize_user, only: [:index, :destroy, :update, :edit]
   before_action :authenticate_customer!, only: [:new, :create, :show, :my_orders, :get_shipping]
+  before_action :required_valid_customer, only: [:show]
 
   def index
     @orders = Order.all.paginate(:page => params[:page])

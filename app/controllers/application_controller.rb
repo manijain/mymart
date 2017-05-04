@@ -48,4 +48,10 @@ class ApplicationController < ActionController::Base
       redirect_to root_path, alert: "You are not authorized for this request."
     end
   end
+
+  def required_valid_customer
+    if !customer_signed_in? && params[:id] != current_customer.id
+      redirect_to root_path, alert: "You are not authorized for this request."
+    end
+  end
 end

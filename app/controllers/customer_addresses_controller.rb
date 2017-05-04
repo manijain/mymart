@@ -4,8 +4,7 @@ class CustomerAddressesController < ApplicationController
 
   def new 
     @cart = current_cart
-    @cart.shipping = nil
-    @cart.save
+    @cart.update_attributes(shipping: nil)
     if @cart.order_items.empty?
       redirect_to root_url, notice: "Your cart is empty"
       return
@@ -19,19 +18,21 @@ class CustomerAddressesController < ApplicationController
   end
 
   def create
-    @order = Order.new
-    @order.customer = current_customer
-    # current_cart.customer = current_customer
-    @order.add_order_items_from_cart(current_cart)
-    @customer_address = @order.build_customer_address(customer_address_params)
+    # @order = Order.new
+    # @order.customer = current_customer
+      # current_cart.customer = current_customer
+    # @order.add_order_items_from_cart(current_cart)
+    # @customer_address = @order.build_customer_address(customer_address_params)
+    @customer_address = CustomerAddress.new(customer_address_params)
     @customer_address.customer = current_customer
+
     respond_to do |format|
       if @customer_address.save
         # if session[:cart_id].present?
         #   Cart.destroy(session[:cart_id])
         #   session[:cart_id] = nil
         # end
-        format.html { redirect_to payments_new_path(order_id: @order.id) }
+        format.html { redirect_to payments_new_path(address_id: @customer_address.id )}
         format.json { render json: @customer_address, status: :created,
           location: @customer_address }
       else
@@ -51,7 +52,7 @@ class CustomerAddressesController < ApplicationController
     @customer_address = CustomerAddress.find(params[:id])
     respond_to do |format|
       if @customer_address.update_attributes(customer_address_params)
-        format.html { redirect_to payments_new_path(order_id: @customer_address.order.id) }
+        format.html { redirect_to payments_new_path(address_id: @customer_address.id) }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
