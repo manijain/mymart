@@ -50,7 +50,8 @@ class ApplicationController < ActionController::Base
   end
 
   def required_valid_customer
-    if !customer_signed_in? && params[:id] != current_customer.id
+    order = Order.where(id: params[:id].to_i, customer_id: current_customer.id)
+    unless order.present?
       redirect_to root_path, alert: "You are not authorized for this request."
     end
   end

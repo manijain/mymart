@@ -77,4 +77,32 @@ class OrderItemsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def add_quantity
+    if params[:order_item_id].present?
+      order_item = OrderItem.find(params[:order_item_id])
+      order_item.item_quantity += 1
+      order_item.save
+      @cart = order_item.cart
+    end
+    respond_to do |format|
+      format.html { redirect_to new_customer_address_path }
+      format.js { }
+    end
+  end
+
+  def less_quantity
+    if params[:order_item_id].present?
+      order_item = OrderItem.find(params[:order_item_id])
+      if order_item.item_quantity > 1
+        order_item.item_quantity -= 1
+        order_item.save
+      end
+      @cart = order_item.cart
+    end
+    respond_to do |format|
+      format.html { redirect_to new_customer_address_path }
+      format.js { }
+    end
+  end
 end

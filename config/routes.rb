@@ -23,7 +23,12 @@ Rails.application.routes.draw do
   end
 
   resources :customer_addresses
-  resources :order_items, only: [:create, :destroy]
+  
+  resources :order_items, only: [:create, :destroy] do
+    get 'add_quantity'
+    get 'less_quantity'
+  end
+
   resources :customers, only: [:index]
   # resources :store, only: [:create]
 

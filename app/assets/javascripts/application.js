@@ -45,25 +45,19 @@ $(document).ready(function(){
   });
 
   /* payment validation */
-  $('#payment-form').validate({
-	debug: true,
-	rules: {
-		'Card number':{required: true, minlength: 12, maxlength: 19, number: true},
-		'Cvv number':{required: true, minlength: 3, maxlength: 3, number: true},
-		'Month':{required: true, number: true, minlength: 1, maxlength: 2},
-		'Year':{required: true, number: true, minlength: 4, maxlength: 4},
-		'Cardholder name':{required: true, maxlength: 80}
-	},
-
-	submitHandler: function(form) {
-    if $('#payment-form').valid(){
-    form.submit();
-    } else {
-      return false;
-      // e.preventDefault()
-      }
-    }
-  });
+ //  $('#payment-form').validate({
+	// debug: true,
+	// rules: {
+	// 	'payment[Card number]':{required: true, minlength: 12, maxlength: 19, number: true},
+	// 	'payment[Cvv number]':{required: true, minlength: 3, maxlength: 3, number: true},
+	// 	'payment[Month]':{required: true, number: true, minlength: 1, maxlength: 2},
+	// 	'payment[Year]':{required: true, number: true, minlength: 4, maxlength: 4},
+	// 	'payment[Cardholder name]':{required: true, maxlength: 80}
+	// },
+	// submitHandler: function(form) {
+	//   form.submit();
+ //    }
+ //  });
 
   /* customer registration validation */
   $('#new_customer').validate({
@@ -75,7 +69,6 @@ $(document).ready(function(){
 		'customer[password]':{required: true, maxlength: 50},
 		'customer[password_confirmation]':{required: true, maxlength: 50}
 	},
-
 	submitHandler: function(form) {
       form.submit();
     } 

@@ -7,6 +7,7 @@
     <li> <a href="#address" data-target="#address" data-toggle="tab">Delivery Address</a></li>
     <li class="active"><a href="#payment" data-target="#payment" data-toggle="tab" class="disabled">Payment Details</a></li>
   </ul>
+
   <div class="tab-content">
     <div class="tab-pane" id="address">
       <div class="address_form">
@@ -16,7 +17,6 @@
         </fieldset>
       </div>
     </div>
-    
     <div class="tab-pane active fade in" id="payment">
       <h3>Please Enter Your Payment Details</h3>
       <%= form_tag payments_checkout_path, method: "post", role: 'form', id: 'payment-form' do %>

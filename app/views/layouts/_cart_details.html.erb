@@ -12,7 +12,14 @@
 	<% cart.order_items.each do |order_item| %>
 		<tr>
 			<td><%= order_item.product.title %></td>
-			<td><%= order_item.item_quantity %>&times;</td>
+			<td><%= order_item.item_quantity %>&times;
+			<a href="<%=order_item_add_quantity_path(order_item)%>" class="btn btn-default btn-sm" data-remote="true">
+          		<span class="glyphicon glyphicon-chevron-up"></span>
+        	</a>&nbsp;&nbsp;
+			<a href="<%=order_item_less_quantity_path(order_item)%>" class="btn btn-default btn-sm" data-remote="true">
+          		<span class="glyphicon glyphicon-chevron-down"></span>
+        	</a>
+			</td>
 			<td><%= number_to_currency(order_item.product.price) %></td>
 			<td class="item_price"><%= number_to_currency(order_item.total_price) %></td>
 		</tr>
