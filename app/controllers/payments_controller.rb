@@ -12,9 +12,6 @@ class PaymentsController < ApplicationController
   end
 
   def checkout
-
-    debugger
-    
     @customer_address = CustomerAddress.find(params[:address_id])
     if @customer_address.order.present?
       @order = Order.find(@customer_address.order.id)
